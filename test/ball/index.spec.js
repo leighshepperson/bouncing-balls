@@ -4,7 +4,7 @@ import {
 import sinon from 'sinon';
 import Ball from '../../src/ball';
 import {
-  gravitationalAcceleration
+  GRAVITATIONAL_ACCELERATION
 } from '../../src/constants';
 
 describe('Ball', function() {
@@ -49,7 +49,7 @@ describe('Ball', function() {
 
     it('moves ball on y-axis by velocity vy and gravity component', function() {
       let ball = new Ball(contextStub, 0, 5, 0, 14);
-      const expected = 19 + gravitationalAcceleration;
+      const expected = 19 + GRAVITATIONAL_ACCELERATION;
       ball.update();
       expect(ball.y).to.equal(expected);
     });

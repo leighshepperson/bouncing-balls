@@ -1,1 +1,1 @@
-export const gravitationalAcceleration = 2;
+export const GRAVITATIONAL_ACCELERATION = 2;
