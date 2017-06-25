@@ -4,14 +4,15 @@ import {
 } from '../constants';
 
 export default class Ball {
-  constructor(canvas, context, x, y, vx, vy, radius) {
+  constructor(canvas, context, x, y, vx, vy, radius, gravitationalAcceleration) {
     this._canvas = canvas;
     this._context = context;
     this._x = x;
     this._y = y;
     this._vx = vx;
     this._vy = vy;
-    this._radius = radius;
+    this._radius = radius,
+    this._gravitationalAcceleration = gravitationalAcceleration;
   }
 
   get x() {
@@ -55,7 +56,7 @@ export default class Ball {
       this._y = this._canvas.height - this._radius;
     }
 
-    this._vy += GRAVITATIONAL_ACCELERATION;
+    this._vy += this._gravitationalAcceleration;
     this._x += this._vx;
     this._y += this._vy;
   }

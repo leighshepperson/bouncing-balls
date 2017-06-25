@@ -35,13 +35,13 @@ describe('BouncingBallApp', function() {
       expect(bouncingBallApp.balls.length).to.be.equal(1);
     });
 
-    it('calls the ball factory with page x position minus canvas offset', function() {
+    it('calls the ballFactory with pageX minus canvas offset', function() {
       bouncingBallApp.addBall(clickEvent);
 
       expect(ballFactoryStub.args[0][0]).to.be.equal(clickEvent.pageX - canvasStub.offsetLeft);
     });
 
-    it('calls the ball factory with page y position minus canvas offset', function() {
+    it('calls the ballFactory with pageY minus canvas offset', function() {
       bouncingBallApp.addBall(clickEvent);
 
       expect(ballFactoryStub.args[0][1]).to.be.equal(clickEvent.pageY - canvasStub.offsetTop);

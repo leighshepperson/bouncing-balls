@@ -19,7 +19,7 @@ describe('Projectile', function() {
       velocity,
       expected
     }) => {
-      it('computes the x component from velocity and angle', function() {
+      it('computes the x component given velocity and angle', function() {
         expect(getX(angle, velocity)).to.be.closeTo(expected, errorMargin);
       });
     });
@@ -31,7 +31,7 @@ describe('Projectile', function() {
       velocity,
       expected
     }) => {
-      it('computes the y component from velocity and angle', function() {
+      it('computes the y component given velocity and angle', function() {
         expect(getY(angle, velocity)).to.be.closeTo(expected, errorMargin);
       });
     })

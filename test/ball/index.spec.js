@@ -3,9 +3,6 @@ import {
 } from 'chai';
 import sinon from 'sinon';
 import Ball from '../../src/ball';
-import {
-  GRAVITATIONAL_ACCELERATION
-} from '../../src/constants';
 
 describe('Ball', function() {
   let contextStub, canvasStub;
@@ -38,43 +35,44 @@ describe('Ball', function() {
       ball.draw();
     });
 
-    it('calls beginPath once', function() {
+    it('calls context.beginPath once', function() {
       expect(contextStub.beginPath.calledOnce).to.be.true;
     });
 
-    it('calls closePath once', function() {
+    it('calls context.closePath once', function() {
       expect(contextStub.closePath.calledOnce).to.be.true;
     });
 
-    it('calls fill once', function() {
+    it('calls context.fill once', function() {
       expect(contextStub.fill.calledOnce).to.be.true;
     });
 
-    it('calls arc with x, y and defaults to draw a ball', function() {
+    it('calls context.arc with x, y and defaults to draw ball', function() {
       expect(contextStub.arc.calledWith(x, y, radius, 0, Math.PI * 2, true)).to.be.ok;
     });
   });
 
   describe('update', function() {
-    let ball;
+    let ball, acceleration;
 
     beforeEach(function() {
       canvasStub = {};
-      ball = new Ball(canvasStub, contextStub, 3, 5, 7, 9, 0);
+      acceleration = 2;
+      ball = new Ball(canvasStub, contextStub, 3, 5, 7, 9, 0, acceleration);
       ball.update();
     });
 
-    it('moves ball on x-axis by velocity vx much', function() {
+    it('moves x-axis by vx', function() {
       expect(ball.x).to.equal(10);
     });
 
-    it('moves ball on y-axis by velocity vy adusted by graviational acceleration', function() {
-      const expected = 14 + GRAVITATIONAL_ACCELERATION;
+    it('moves y-axis by vy added with acceleration', function() {
+      const expected = 14 + acceleration;
       expect(ball.y).to.equal(expected);
     });
 
-    it('updates y-axis velocity by graviational acceleration', function() {
-      const expected = 9 + GRAVITATIONAL_ACCELERATION;
+    it('updates y-axis velocity by adding acceleration', function() {
+      const expected = 9 + acceleration;
       expect(ball.vy).to.equal(expected);
     });
 
@@ -82,29 +80,29 @@ describe('Ball', function() {
       expect(ball.vx).to.equal(7);
     });
 
-    it('reverses y-axis velocity if the ball will leave the bottom of the screen', function() {
+    it('reverses the y-axis velocity if the ball will leave the bottom of the canvas', function() {
       const radius = 1,
         vy = 9;
       canvasStub = {
         height: 300
       };
-      ball = new Ball(canvasStub, contextStub, 0, 300, 0, vy, radius);
-      const expected = -vy + GRAVITATIONAL_ACCELERATION;
+      ball = new Ball(canvasStub, contextStub, 0, 300, 0, vy, radius, acceleration);
+      const expected = -vy + acceleration;
 
       ball.update();
 
       expect(ball.vy).to.be.equal(expected);
     });
 
-    it('returns the ball to the canvas if it will leave the bottom of the screen', function() {
+    it('returns the ball to the canvas if it will leave the bottom of the canvas', function() {
       const radius = 1,
         y = 300,
         height = 300;
       canvasStub = {
         height: height
       };
-      ball = new Ball(canvasStub, contextStub, 0, y, 0, 0, radius);
-      const expected = height + GRAVITATIONAL_ACCELERATION - radius;
+      ball = new Ball(canvasStub, contextStub, 0, y, 0, 0, radius, acceleration);
+      const expected = height + acceleration - radius;
 
       ball.update();
 
