@@ -17,6 +17,14 @@ export default class Ball {
     return this._y;
   }
 
+  get vx() {
+    return this._vx;
+  }
+
+  get vy() {
+    return this._vy;
+  }
+
   draw() {
     this.context.beginPath();
     this.context.arc(

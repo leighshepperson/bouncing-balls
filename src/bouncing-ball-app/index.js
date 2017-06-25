@@ -1,9 +1,10 @@
 import Ball from '../ball';
 export default class BouncingBallApp {
-  constructor(canvas, context) {
+  constructor(canvas, context, ballFactory) {
     this._canvas = canvas;
     this._context = context;
     this._balls = [];
+    this._ballFactory = ballFactory;
   }
 
   get balls() {
@@ -14,7 +15,7 @@ export default class BouncingBallApp {
     pageX,
     pageY
   }) {
-    const ball = new Ball(context, pageX - this._canvas.offsetLeft, pageY - this._canvas.offsetTop, 0, 0);
+    const ball = this._ballFactory(pageX - this._canvas.offsetLeft, pageY - this._canvas.offsetTop);
     this.balls.push(ball);
   }
 }

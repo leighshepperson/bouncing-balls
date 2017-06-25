@@ -1,10 +1,11 @@
 import {
   expect
 } from 'chai';
+import sinon from 'sinon';
 import BouncingBallApp from '../../src/bouncing-ball-app';
 
 describe('BouncingBallApp', function() {
-  let contextStub, canvasStub;
+  let contextStub, canvasStub, ballFactoryStub;
 
   before(function() {
     contextStub = {};
@@ -14,6 +15,7 @@ describe('BouncingBallApp', function() {
       offsetLeft: 20,
       offsetTop: 32
     };
+    ballFactoryStub = sinon.stub();
   });
 
   describe('addBall', function() {
@@ -25,7 +27,7 @@ describe('BouncingBallApp', function() {
     let bouncingBallApp;
 
     beforeEach(function() {
-      bouncingBallApp = new BouncingBallApp(canvasStub, contextStub);
+      bouncingBallApp = new BouncingBallApp(canvasStub, contextStub, ballFactoryStub);
     });
 
     it('adds a ball to the list of balls', function() {
@@ -33,12 +35,16 @@ describe('BouncingBallApp', function() {
       expect(bouncingBallApp.balls.length).to.be.equal(1);
     });
 
-    it('adds a ball at position x and position y minus canvas offset', function() {
+    it('calls the ball factory with page x position minus canvas offset', function() {
       bouncingBallApp.addBall(clickEvent);
-      const [ball] = bouncingBallApp.balls;
 
-      expect(ball.x).to.be.equal(2 - canvasStub.offsetLeft);
-      expect(ball.y).to.be.equal(3 - canvasStub.offsetTop);
+      expect(ballFactoryStub.args[0][0]).to.be.equal(clickEvent.pageX - canvasStub.offsetLeft);
+    });
+
+    it('calls the ball factory with page y position minus canvas offset', function() {
+      bouncingBallApp.addBall(clickEvent);
+
+      expect(ballFactoryStub.args[0][1]).to.be.equal(clickEvent.pageY - canvasStub.offsetTop);
     });
   });
 });
