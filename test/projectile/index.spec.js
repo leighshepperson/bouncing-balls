@@ -15,5 +15,14 @@ describe('Projectile', function() {
 
       expect(getX(angle, velocity)).to.be.closeTo(1.5, errorMargin);
     });
+  });
+
+  describe('getY', function() {
+    it('computes the y component from velocity and angle', function() {
+      const angle = Math.PI / 3,
+        velocity = 5;
+
+      expect(getY(angle, velocity)).to.be.closeTo(4.33012, errorMargin);
+    });
   })
 });
