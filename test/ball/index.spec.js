@@ -53,60 +53,73 @@ describe('Ball', function() {
   });
 
   describe('update', function() {
-    let ball, acceleration;
+    const x = 3,
+      y = 5,
+      vx = 7,
+      vy = 8,
+      radius = 1;
+    let ball, gravitationalAcceleration, bounce;
 
     beforeEach(function() {
-      canvasStub = {};
-      acceleration = 2;
-      ball = new Ball(canvasStub, contextStub, 3, 5, 7, 9, 0, acceleration);
-      ball.update();
+      canvasStub = {
+        height: 300
+      };
+      gravitationalAcceleration = 2;
+      bounce = 1;
+      ball = new Ball(canvasStub, contextStub, x, y, vx, vy, radius, gravitationalAcceleration, bounce);
     });
 
     it('moves x-axis by vx', function() {
-      expect(ball.x).to.equal(10);
+      ball.update()
+      const expected = x + vx;
+      expect(ball.x).to.equal(expected);
     });
 
-    it('moves y-axis by vy added with acceleration', function() {
-      const expected = 14 + acceleration;
+    it('moves y-axis by vy added with gravitational acceleration', function() {
+      ball.update();
+      const expected = y + vy + gravitationalAcceleration;
       expect(ball.y).to.equal(expected);
     });
 
-    it('updates y-axis velocity by adding acceleration', function() {
-      const expected = 9 + acceleration;
+    it('updates y-axis velocity by adding gravitational acceleration', function() {
+      ball.update();
+      const expected = vy + gravitationalAcceleration;
       expect(ball.vy).to.equal(expected);
     });
 
     it('does not update x-axis velocity', function() {
+      ball.update();
       expect(ball.vx).to.equal(7);
     });
 
-    it('reverses the y-axis velocity if the ball will leave the bottom of the canvas', function() {
-      const radius = 1,
-        vy = 9;
-      canvasStub = {
-        height: 300
-      };
-      ball = new Ball(canvasStub, contextStub, 0, 300, 0, vy, radius, acceleration);
-      const expected = -vy + acceleration;
+    it('if the ball will leave the bottom of the canvas, then reverse y-velocity', function() {
+      canvasStub.height = y;
+      const expected = -vy + gravitationalAcceleration;
 
       ball.update();
 
       expect(ball.vy).to.be.equal(expected);
+
     });
 
-    it('returns the ball to the canvas if it will leave the bottom of the canvas', function() {
-      const radius = 1,
-        y = 300,
-        height = 300;
-      canvasStub = {
-        height: height
-      };
-      ball = new Ball(canvasStub, contextStub, 0, y, 0, 0, radius, acceleration);
-      const expected = height + acceleration - radius;
+    it('if the ball it will leave the bottom of the canvas, then return it to the canvas', function() {
+      canvasStub.height = y;
+      const expected = y - radius + -vy + gravitationalAcceleration;
 
       ball.update();
 
       expect(ball.y).to.be.equal(expected);
+    });
+
+    it('if the ball it will leave the bottom of the canvas, then multiply its y-velocity by its bounce', function() {
+      canvasStub.height = y;
+      bounce = 0.3;
+      ball = new Ball(canvasStub, contextStub, x, y, vx, vy, radius, gravitationalAcceleration, bounce);
+      const expected = bounce * -vy + gravitationalAcceleration;
+
+      ball.update();
+
+      expect(ball.vy).to.be.equal(expected);
     });
   });
 });

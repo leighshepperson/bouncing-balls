@@ -1,18 +1,14 @@
-import {
-  GRAVITATIONAL_ACCELERATION,
-  BALL_RADIUS
-} from '../constants';
-
 export default class Ball {
-  constructor(canvas, context, x, y, vx, vy, radius, gravitationalAcceleration) {
+  constructor(canvas, context, x, y, vx, vy, radius, gravitationalAcceleration, bounce) {
     this._canvas = canvas;
     this._context = context;
     this._x = x;
     this._y = y;
     this._vx = vx;
     this._vy = vy;
-    this._radius = radius,
+    this._radius = radius;
     this._gravitationalAcceleration = gravitationalAcceleration;
+    this._bounce = bounce;
   }
 
   get x() {
@@ -51,8 +47,8 @@ export default class Ball {
   }
 
   update() {
-    if((this._y + this._radius) > this._canvas.height) {
-      this._vy = -this.vy;
+    if ((this._y + this._radius) > this._canvas.height) {
+      this._vy = -this.vy * this._bounce;
       this._y = this._canvas.height - this._radius;
     }
 

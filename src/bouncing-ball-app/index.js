@@ -1,4 +1,5 @@
 import Ball from '../ball';
+
 export default class BouncingBallApp {
   constructor(canvas, context, ballFactory) {
     this._canvas = canvas;
