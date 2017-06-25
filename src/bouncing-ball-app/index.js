@@ -10,8 +10,11 @@ export default class BouncingBallApp {
     return this._balls;
   }
 
-  addBall() {
-    const ball = new Ball(context, 0, 0, 0, 0);
+  addBall({
+    pageX,
+    pageY
+  }) {
+    const ball = new Ball(context, pageX - this._canvas.offsetLeft, pageY - this._canvas.offsetTop, 0, 0);
     this.balls.push(ball);
   }
 }
