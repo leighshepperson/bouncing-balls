@@ -24,15 +24,16 @@ describe('Ball', function() {
   });
 
   describe('draw', function() {
-    it('draws a ball at position x, y', function() {
-      const x = 3,
-        y = 5;
-
-      const ball = new Ball(contextStub, x, y, 0, 0);
+    it('draws a ball at position x, y with radius 2', function() {
+      let x = 3,
+        y = 5,
+        ball = new Ball(contextStub, x, y, 0, 0);
 
       ball.draw();
-
-      expect(contextStub.arc).to.be.calledWith(x, y);
+      expect(contextStub.beginPath.calledOnce).to.be.true;
+      expect(contextStub.arc.calledWith(x, y, 2, 0, Math.PI * 2, true)).to.be.ok;
+      expect(contextStub.closePath.calledOnce).to.be.true;
+      expect(contextStub.fill.calledOnce).to.be.true;
     });
   });
 });

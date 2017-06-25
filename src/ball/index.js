@@ -6,4 +6,15 @@ export default class Ball {
     this.xv = xv,
     this.xy = xy
   }
+
+  draw() {
+    this.context.arc(
+      this.x,
+      this.y,
+      2,
+      0,
+      Math.PI * 2,
+      true
+    );
+  }
 }
