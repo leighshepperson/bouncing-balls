@@ -1,0 +1,22 @@
+{
+  "name": "bouncing-balls",
+  "version": "1.0.0",
+  "description": "Bouncing balls - projectiles",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leighshepperson/bouncing-balls.git"
+  },
+  "keywords": [
+    "JavaScript"
+  ],
+  "author": "Leigh Shepperson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leighshepperson/bouncing-balls/issues"
+  },
+  "homepage": "https://github.com/leighshepperson/bouncing-balls#readme"
+}
