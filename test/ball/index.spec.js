@@ -27,12 +27,13 @@ describe('Ball', function() {
   });
 
   describe('draw', function() {
-    let ball, x, y;
+    let ball, x, y, radius;
 
     beforeEach(function() {
       x = 3;
       y = 5;
-      ball = new Ball(contextStub, x, y);
+      radius = 2;
+      ball = new Ball(contextStub, x, y, null, null, radius);
       ball.draw();
     });
 
@@ -49,7 +50,7 @@ describe('Ball', function() {
     });
 
     it('calls arc with x, y and defaults to draw a ball', function() {
-      expect(contextStub.arc.calledWith(x, y, 2, 0, Math.PI * 2, true)).to.be.ok;
+      expect(contextStub.arc.calledWith(x, y, radius, 0, Math.PI * 2, true)).to.be.ok;
     });
   });
 

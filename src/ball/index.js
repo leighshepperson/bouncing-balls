@@ -4,12 +4,13 @@ import {
 } from '../constants';
 
 export default class Ball {
-  constructor(context, x, y, vx, vy) {
+  constructor(context, x, y, vx, vy, radius) {
     this.context = context;
     this._x = x;
     this._y = y;
     this._vx = vx;
     this._vy = vy;
+    this._radius = radius;
   }
 
   get x() {
@@ -28,12 +29,16 @@ export default class Ball {
     return this._vy;
   }
 
+  get radius() {
+    return this._radius;
+  }
+
   draw() {
     this.context.beginPath();
     this.context.arc(
       this._x,
       this._y,
-      BALL_RADIUS,
+      this._radius,
       0,
       Math.PI * 2,
       true

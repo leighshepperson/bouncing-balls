@@ -4,7 +4,8 @@ import {
   getY
 } from '../projectile';
 import {
-  MAX_SPEED
+  MAX_SPEED,
+  BALL_RADIUS
 } from '../constants';
 
 export const createBallWithRandomVelocity = (context, randomNumberGenerator) => {
@@ -13,6 +14,6 @@ export const createBallWithRandomVelocity = (context, randomNumberGenerator) => 
     const velocity = MAX_SPEED * randomNumberGenerator();
     const vx = getX(angle, velocity);
     const vy = getY(angle, velocity);
-    return new Ball(context, x, y, vx, vy);
+    return new Ball(context, x, y, vx, vy, BALL_RADIUS);
   }
 }
