@@ -4,7 +4,7 @@ import {
 } from './ball/factory';
 
 if (module.hot) {
-  module.hot.accept()
+  module.hot.accept();
 }
 
 window.addEventListener('load', function() {

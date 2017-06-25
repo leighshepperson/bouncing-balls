@@ -99,7 +99,6 @@ describe('Ball', function() {
       ball.update();
 
       expect(ball.vy).to.be.equal(expected);
-
     });
 
     it('if the ball it will leave the bottom of the canvas, then return it to the canvas', function() {
