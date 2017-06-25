@@ -8,12 +8,12 @@ import {
   BALL_RADIUS
 } from '../constants';
 
-export const createBallWithRandomVelocity = (context, randomNumberGenerator) => {
+export const createBallWithRandomVelocity = (canvas, context, randomNumberGenerator) => {
   return (x, y) => {
     const angle = 2 * Math.PI * randomNumberGenerator();
     const velocity = MAX_SPEED * randomNumberGenerator();
     const vx = getX(angle, velocity);
     const vy = getY(angle, velocity);
-    return new Ball(context, x, y, vx, vy, BALL_RADIUS);
+    return new Ball(canvas, context, x, y, vx, vy, BALL_RADIUS);
   }
 }

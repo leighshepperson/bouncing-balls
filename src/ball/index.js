@@ -4,8 +4,9 @@ import {
 } from '../constants';
 
 export default class Ball {
-  constructor(context, x, y, vx, vy, radius) {
-    this.context = context;
+  constructor(canvas, context, x, y, vx, vy, radius) {
+    this._canvas = canvas;
+    this._context = context;
     this._x = x;
     this._y = y;
     this._vx = vx;
@@ -34,8 +35,8 @@ export default class Ball {
   }
 
   draw() {
-    this.context.beginPath();
-    this.context.arc(
+    this._context.beginPath();
+    this._context.arc(
       this._x,
       this._y,
       this._radius,
@@ -43,13 +44,19 @@ export default class Ball {
       Math.PI * 2,
       true
     );
-    this.context.closePath();
-    this.context.fill();
+    this._context.closePath();
+    this._context.fillStyle = 'red';
+    this._context.fill();
   }
 
   update() {
+    if((this._y + this._radius) > this._canvas.height) {
+      this._vy = -this.vy;
+      this._y = this._canvas.height - this._radius;
+    }
+
+    this._vy += GRAVITATIONAL_ACCELERATION;
     this._x += this._vx;
     this._y += this._vy;
-    this._vy += GRAVITATIONAL_ACCELERATION;
   }
 }

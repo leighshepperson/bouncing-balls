@@ -1,3 +1,3 @@
-export const GRAVITATIONAL_ACCELERATION = 2;
-export const MAX_SPEED = 10;
-export const BALL_RADIUS = 5;
+export const GRAVITATIONAL_ACCELERATION = 0.3;
+export const MAX_SPEED = 20;
+export const BALL_RADIUS = 30;

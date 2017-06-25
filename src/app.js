@@ -10,7 +10,7 @@ if (module.hot) {
 window.addEventListener('load', function() {
   const canvas = document.getElementById('bouncing-ball-canvas');
   const context = canvas.getContext('2d');
-  const ballFactory = createBallWithRandomVelocity(context, Math.random);
+  const ballFactory = createBallWithRandomVelocity(canvas, context, Math.random);
   const app = new BouncingBallApp(canvas, context, ballFactory);
 
   canvas.addEventListener('click', function(e) {
@@ -21,7 +21,7 @@ window.addEventListener('load', function() {
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.height = window.innerHeight - canvas.offsetTop;
   }
 
   resizeCanvas();
