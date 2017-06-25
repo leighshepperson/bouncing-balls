@@ -25,7 +25,6 @@ describe('BouncingBallApp', function() {
 
     it('adds a ball to the list of balls', function() {
       bouncingBallApp.addBall();
-      console.log(bouncingBallApp);
       expect(bouncingBallApp.balls.length).to.be.equal(1);
     });
   });
