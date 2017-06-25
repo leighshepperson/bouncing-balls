@@ -7,7 +7,8 @@
     "test": "mocha --recursive --require babel-core/register",
     "test:w": "mocha --watch --recursive --require babel-core/register",
     "start": "webpack-dev-server --inline --hot",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progres"
   },
   "repository": {
     "type": "git",
