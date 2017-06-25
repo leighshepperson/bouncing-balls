@@ -1,23 +1,24 @@
 import {
   expect
 } from 'chai';
-import { updateX } from '../../src/projectile';
+import {
+  updateX
+} from '../../src/projectile';
+import {
+  updateXTestCases
+} from './index.spec-data';
 
 describe('Projectile', function() {
-  it('updates the motion in the x-axis for a given time, angle and initial velocity', function() {
-    const time = 1,
-      angle = Math.PI,
-      initialVelocity = 4,
-      input = {
-        x: 2,
-        vx: 4
-      };
-
-    const expected = {
-      x: -2,
-      vx: -4
-    }
-
-    expect(updateX(input, angle, initialVelocity, time)).to.deep.equal(expected);
+  updateXTestCases().forEach(({
+    time,
+    angle,
+    initialVelocity,
+    input,
+    expected
+  }) => {
+    it('updates the motion in the x-axis for a given time, angle and initial velocity', function() {
+      const {x, vx} = updateX(input, angle, initialVelocity, time);
+      expect(x).to.be.closeTo(expected.x, 0.00001);
+    });
   });
 });
