@@ -10,7 +10,8 @@
     "test": "mocha --recursive --require babel-core/register",
     "test:w": "mocha --watch --recursive --require babel-core/register",
     "start": "webpack-dev-server --inline --hot",
-    "build": "webpack -p"
+    "build": "NODE_ENV=production webpack -p --config webpack.production.config.js",
+    "heroku-postbuild": "NODE_ENV=production webpack -p --config ./webpack.production.config.js --progress"
   },
   "repository": {
     "type": "git",
