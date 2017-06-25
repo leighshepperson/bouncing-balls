@@ -13,7 +13,6 @@ const errorMargin = 0.00001;
 
 describe('Ball Factory', function() {
   describe('createBallWithRandomVelocity', function() {
-
     let randomNumberGeneratorStub, contextStub;
 
     beforeEach(function() {

@@ -13,9 +13,18 @@ window.addEventListener('load', function() {
   const ballFactory = createBallWithRandomVelocity(context, Math.random);
   const app = new BouncingBallApp(canvas, context, ballFactory);
 
-  canvas.addEventListener('click', (e) => {
+  canvas.addEventListener('click', function(e) {
     app.addBall(e);
   });
+
+  window.addEventListener('resize', resizeCanvas);
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  resizeCanvas();
 
   app.draw();
 });

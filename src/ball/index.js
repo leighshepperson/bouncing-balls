@@ -1,4 +1,7 @@
-import { GRAVITATIONAL_ACCELERATION } from '../constants';
+import {
+  GRAVITATIONAL_ACCELERATION,
+  BALL_RADIUS
+} from '../constants';
 
 export default class Ball {
   constructor(context, x, y, vx, vy) {
@@ -30,7 +33,7 @@ export default class Ball {
     this.context.arc(
       this._x,
       this._y,
-      2,
+      BALL_RADIUS,
       0,
       Math.PI * 2,
       true

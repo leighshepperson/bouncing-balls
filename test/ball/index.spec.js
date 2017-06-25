@@ -27,31 +27,55 @@ describe('Ball', function() {
   });
 
   describe('draw', function() {
-    it('draws a ball at position x, y with radius 2', function() {
-      let x = 3,
-        y = 5,
-        ball = new Ball(contextStub, x, y, 0, 0);
+    let ball, x, y;
 
+    beforeEach(function() {
+      x = 3;
+      y = 5;
+      ball = new Ball(contextStub, x, y);
       ball.draw();
+    });
+
+    it('calls beginPath once', function() {
       expect(contextStub.beginPath.calledOnce).to.be.true;
-      expect(contextStub.arc.calledWith(x, y, 2, 0, Math.PI * 2, true)).to.be.ok;
+    });
+
+    it('calls closePath once', function() {
       expect(contextStub.closePath.calledOnce).to.be.true;
+    });
+
+    it('calls fill once', function() {
       expect(contextStub.fill.calledOnce).to.be.true;
+    });
+
+    it('calls arc with x, y and defaults to draw a ball', function() {
+      expect(contextStub.arc.calledWith(x, y, 2, 0, Math.PI * 2, true)).to.be.ok;
     });
   });
 
   describe('update', function() {
-    it('moves ball on x-axis by velocity vx', function() {
-      const ball = new Ball(contextStub, 3, 0, 4, 0);
+    let ball;
+
+    beforeEach(function() {
+      ball = new Ball(contextStub, 3, 5, 7, 9);
       ball.update();
-      expect(ball.x).to.equal(7);
     });
 
-    it('moves ball on y-axis by velocity vy and gravity component', function() {
-      let ball = new Ball(contextStub, 0, 5, 0, 14);
-      const expected = 19 + GRAVITATIONAL_ACCELERATION;
-      ball.update();
-      expect(ball.y).to.equal(expected);
+    it('moves ball on x-axis by velocity vx much', function() {;
+      expect(ball.x).to.equal(10);
+    });
+
+    it('moves ball on y-axis by velocity vy much', function() {;
+      expect(ball.y).to.equal(14);
+    });
+
+    it('updates y-axis velocity by graviational acceleration', function() {
+      const expected = 9 + GRAVITATIONAL_ACCELERATION;
+      expect(ball.vy).to.equal(expected);
+    });
+
+    it('does not update x-axis velocity', function() {
+      expect(ball.vx).to.equal(7);
     });
   });
 });

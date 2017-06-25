@@ -1,6 +1,11 @@
 import Ball from './';
-import { getX, getY } from '../projectile';
-import { MAX_SPEED } from '../constants';
+import {
+  getX,
+  getY
+} from '../projectile';
+import {
+  MAX_SPEED
+} from '../constants';
 
 export const createBallWithRandomVelocity = (context, randomNumberGenerator) => {
   return (x, y) => {

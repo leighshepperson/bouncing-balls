@@ -16,15 +16,18 @@ export default class BouncingBallApp {
     pageX,
     pageY
   }) {
-    const ball = this._ballFactory(pageX - this._canvas.offsetLeft, pageY - this._canvas.offsetTop);
-    this.balls.push(ball);
+    const ball = this._ballFactory(
+      pageX - this._canvas.offsetLeft,
+      pageY - this._canvas.offsetTop
+    );
+    this._balls.push(ball);
   }
 
   draw() {
     requestAnimationFrame(this.draw);
     this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
 
-    for(const ball of this.balls) {
+    for (const ball of this._balls) {
       ball.update();
       ball.draw();
     };
