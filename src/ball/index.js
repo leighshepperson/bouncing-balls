@@ -41,6 +41,7 @@ export default class Ball {
 
   update() {
     this._x += this._vx;
-    this._y += this._vy + GRAVITATIONAL_ACCELERATION;
+    this._y += this._vy;
+    this._vy += GRAVITATIONAL_ACCELERATION;
   }
 }
