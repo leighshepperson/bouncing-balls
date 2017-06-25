@@ -36,4 +36,15 @@ describe('Ball', function() {
       expect(contextStub.fill.calledOnce).to.be.true;
     });
   });
+
+  describe('update', function() {
+    it('moves a ball at position x by velocity vx', function() {
+      let x = 3,
+        vx = 4,
+        ball = new Ball(contextStub, x, 0, vx, 0);
+
+      ball.update();
+      expect(ball.x).to.equal(7);
+    });
+  });
 });
