@@ -42,14 +42,14 @@ describe('Ball', function() {
 
   describe('update', function() {
     it('moves ball on x-axis by velocity vx', function() {
-      const ball = new Ball(contextStub, 3, 0, vx, 4);
+      const ball = new Ball(contextStub, 3, 0, 4, 0);
       ball.update();
       expect(ball.x).to.equal(7);
     });
 
     it('moves ball on y-axis by velocity vy and gravity component', function() {
       let ball = new Ball(contextStub, 0, 5, 0, 14);
-      const expected = 21 + gravitationalAcceleration;
+      const expected = 19 + gravitationalAcceleration;
       ball.update();
       expect(ball.y).to.equal(expected);
     });

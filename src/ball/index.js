@@ -1,3 +1,5 @@
+import { gravitationalAcceleration } from '../constants';
+
 export default class Ball {
   constructor(context, x, y, vx, vy) {
     this.context = context;
@@ -9,6 +11,10 @@ export default class Ball {
 
   get x() {
     return this._x;
+  }
+
+  get y() {
+    return this._y;
   }
 
   draw() {
@@ -27,5 +33,6 @@ export default class Ball {
 
   update() {
     this._x += this._vx;
+    this._y += this._vy + gravitationalAcceleration;
   }
 }
