@@ -3,6 +3,9 @@ import {
 } from 'chai';
 import sinon from 'sinon';
 import Ball from '../../src/ball';
+import {
+  gravitationalAcceleration
+} from '../../src/constants';
 
 describe('Ball', function() {
   let contextStub;
@@ -38,13 +41,17 @@ describe('Ball', function() {
   });
 
   describe('update', function() {
-    it('moves a ball at position x by velocity vx', function() {
-      let x = 3,
-        vx = 4,
-        ball = new Ball(contextStub, x, 0, vx, 0);
-
+    it('moves ball on x-axis by velocity vx', function() {
+      const ball = new Ball(contextStub, 3, 0, vx, 4);
       ball.update();
       expect(ball.x).to.equal(7);
+    });
+
+    it('moves ball on y-axis by velocity vy and gravity component', function() {
+      let ball = new Ball(contextStub, 0, 5, 0, 14);
+      const expected = 21 + gravitationalAcceleration;
+      ball.update();
+      expect(ball.y).to.equal(expected);
     });
   });
 });
