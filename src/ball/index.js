@@ -44,6 +44,9 @@ export default class Ball {
     this._context.closePath();
     this._context.fillStyle = 'red';
     this._context.fill();
+    this._context.lineWidth = 5;
+    this._context.strokeStyle = 'black';
+    this._context.stroke();
   }
 
   update() {

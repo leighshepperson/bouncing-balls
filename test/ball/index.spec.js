@@ -13,7 +13,8 @@ describe('Ball', function() {
       beginPath: sinon.spy(),
       arc: sinon.spy(),
       closePath: sinon.spy(),
-      fill: sinon.spy()
+      fill: sinon.spy(),
+      stroke: sinon.spy()
     };
   });
 
@@ -22,6 +23,7 @@ describe('Ball', function() {
     contextStub.arc.reset();
     contextStub.closePath.reset();
     contextStub.fill.reset();
+    contextStub.stroke.reset();
   });
 
   describe('draw', function() {
@@ -49,6 +51,10 @@ describe('Ball', function() {
 
     it('calls context.arc with x, y and defaults to draw ball', function() {
       expect(contextStub.arc.calledWith(x, y, radius, 0, Math.PI * 2, true)).to.be.ok;
+    });
+
+    it('calls context.stroke once', function() {
+      expect(contextStub.stroke.calledOnce).to.be.true;
     });
   });
 
