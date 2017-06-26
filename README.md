@@ -1,15 +1,15 @@
 # Bouncing Balls
 
-Click on the canvas to make a ball fire at a random direction and speed subject
-to gravity and its coefficient of restitution (bounciness).
+Click the canvas to make a ball fire at a random direction and speed subject
+to gravity and the balls coefficient of restitution (bounciness).
 
 [View the application here](https://ancient-beyond-18464.herokuapp.com/).
 
 ## External libraries
 
-[Babel](https://babeljs.io/): Transpilation to enable modern JS features and language extensions.
-[Webpack](https://webpack.github.io/): Compiling app to a browser-friendly bundle.
-[Express](http://expressjs.com/): Web server.
+* [Babel](https://babeljs.io/): Transpilation to enable modern JS features and language extensions.
+* [Webpack](https://webpack.github.io/): Compiling app to a browser-friendly bundle.
+* [Express](http://expressjs.com/): Web server.
 
 ## Architecture
 
@@ -22,9 +22,9 @@ The app is composed of:
 
 Unit testing is done with:
 
-[Chai](http://chaijs.com/): BDD / TDD assertion library for node.
-[Mocha](https://mochajs.org/): Feature-rich JavaScript test framework.
-[Sinon](http://sinonjs.org/): Standalone test spies, stubs and mocks for JavaScript.
+* [Chai](http://chaijs.com/): BDD / TDD assertion library for node.
+* [Mocha](https://mochajs.org/): Feature-rich JavaScript test framework.
+* [Sinon](http://sinonjs.org/): Standalone test spies, stubs and mocks for JavaScript.
 
 To run the unit tests:
 
