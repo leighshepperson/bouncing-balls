@@ -1,7 +1,7 @@
 import BouncingBallApp from './bouncing-ball-app';
 import {
   createBallWithRandomVelocity
-} from './ball/factory';
+} from './ball/ball-factory';
 
 if (module.hot) {
   module.hot.accept();

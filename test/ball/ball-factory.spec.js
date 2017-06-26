@@ -4,14 +4,14 @@ import {
 import sinon from 'sinon';
 import {
   createBallWithRandomVelocity
-} from '../../src/ball/factory';
+} from '../../src/ball/ball-factory';
 import {
   MAX_SPEED
 } from '../../src/constants';
 
 const errorMargin = 0.00001;
 
-describe('Ball Factory', function() {
+describe('ballFactory', function() {
   describe('createBallWithRandomVelocity', function() {
     let randomNumberGeneratorStub, canvasStub, contextStub, ball;
 
