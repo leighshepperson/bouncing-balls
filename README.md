@@ -1,7 +1,7 @@
 # Bouncing Balls
 
 Click the canvas to make a ball fire at a random direction and speed subject
-to gravity and the balls coefficient of restitution (bounciness).
+to gravity and the ball's coefficient of restitution (bounciness).
 
 [View the application here](https://bouncing-balls-demo.herokuapp.com/).
 
